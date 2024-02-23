@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 714070419}
   - component: {fileID: 714070418}
   - component: {fileID: 714070417}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ MonoBehaviour:
   rb: {fileID: 1966210727}
   moveSpeed: 0
   jumpStrength: 0
-  canJump: 1
+  isGrounded: 0
   isPossessing: 1
   possessTag: 
 --- !u!212 &1966210725
