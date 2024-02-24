@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed;
     public float jumpStrength;
+    public float groundDrag = 10;
     public bool isGrounded = true;
+    public bool isOnWall = true;
     public PlayerInput playerControls;
     private InputAction movementControls;
     private InputAction jumpControls;
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         moveSpeed = 7f;
-        jumpStrength = 5.5f;
+        jumpStrength = 13f;
         //initiate vars
     }
 
@@ -60,10 +62,13 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = movementControls.ReadValue<Vector2>();
         //update movement base on key inputs
-        // if(!isGrounded)
-        // {
-        //     rb.AddForce
-        // }
+        if(isGrounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else{
+            rb.drag = 0;
+        }
     }
 
     private void FixedUpdate()
