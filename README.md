@@ -10,9 +10,9 @@ Mac: run the executed .app file
   2. Testing new coding style of using events & listeners rather than many refrences
   3. Includes one scene/puzzle of the player needing to get the key in order to open the door
 
-#How to play
+# How to play
   Not playable as of the moment unfortunatley, use WASD to test and toggle movement
 
 
-#Credits and attributions 
+# Credits and attributions 
   Not applicable 
