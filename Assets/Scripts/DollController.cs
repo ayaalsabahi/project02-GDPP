@@ -6,6 +6,7 @@ using UnityEngine;
 public class DollController : MonoBehaviour
 {
     public DollProperties properties;
+    public string DollName;
     public float speed;
     public float jump;
     public float gravity;
@@ -13,12 +14,18 @@ public class DollController : MonoBehaviour
 
     void Start()
     {
+        DollName = properties.dollName;
         speed = properties.moveSpeed;
         jump = properties.jumpStrength;
         gravity = properties.gravity;
         sprite = properties.dollSprite;
 
         GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+    void Update()
+    {
+        Debug.Log("doll loctaion" + transform.position);
     }
 
     public void Hide()
@@ -38,6 +45,16 @@ public class DollController : MonoBehaviour
 
     public void OnReleased()
     {
-        // Logic for when the doll is released
+        Show();
+    }
+
+    public string GetName()
+    {
+        return DollName;
+    }
+
+    public void SendToGhost(Vector2 location)
+    {
+        transform.position = location;
     }
 }
