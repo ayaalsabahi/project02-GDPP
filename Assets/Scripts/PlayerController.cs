@@ -100,7 +100,8 @@ public class PlayerController : MonoBehaviour
             DollDetector();
         }
         else{
-            
+            // Debug.Log(closestDoll.GetComponent<DollController>().GetName());
+            dollController.transform.position = transform.position;
         }
     }
 
@@ -161,14 +162,12 @@ public class PlayerController : MonoBehaviour
             SetGhostProperties();
             Debug.Log("we posses now");
         }
-        else{
+        else if(isPossessing)
+        {
+            dollController.OnReleased();
+            // dollController.SendToGhost(transform.position);
+            // dollController.Show();
             isPossessing = false;
-            if(closestDoll != null)
-            {
-                closestDoll.transform.position = transform.position;
-                closestDoll.GetComponent<DollController>().Show();
-                closestDoll.GetComponent<SpriteRenderer>().enabled = true;
-            }
             SetGhostProperties();
             Debug.Log("we cool");
         }

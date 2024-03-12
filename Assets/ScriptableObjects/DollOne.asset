@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0709c6e5684344d8a337402350f7f7d, type: 3}
   m_Name: DollOne
   m_EditorClassIdentifier: 
+  dollName: DollOne
   moveSpeed: 7
   jumpStrength: 13
   gravity: 3
   dollSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  animatorController: {fileID: 0}
