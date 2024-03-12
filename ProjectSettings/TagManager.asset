@@ -45,3 +45,6 @@ TagManager:
   - name: buttons
     uniqueID: 1026831777
     locked: 0
+  - name: decor
+    uniqueID: 12560835
+    locked: 0

@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     //Sprite and Animations
     public SpriteRenderer spriteRenderer;
 
+
+    [Header("Events")]
+
+    public GameEvent bodyPossesed;
+
     private void Awake()
     {
         playerControls = new PlayerInput();
@@ -161,6 +166,10 @@ public class PlayerController : MonoBehaviour
             dollController.Hide();
             SetGhostProperties();
             Debug.Log("we posses now");
+
+            //add an action sequence that the doll was possesed
+            bodyPossesed.Raise();
+
         }
         else if(isPossessing)
         {
