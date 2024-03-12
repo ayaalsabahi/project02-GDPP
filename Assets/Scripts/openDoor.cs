@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class openDoor : MonoBehaviour
 {
-    public void doorRaised()
+    public async void doorRaised()
     {
         //get the current position 
         Vector3 currentPosition = transform.position;
 
-        //add 30 to it
-        currentPosition.y += 30f;
-
-        // Update the object's position
+        //later change this to an animation trigger
+        currentPosition.y += 2f;
         transform.position = currentPosition;
-
-
 
     }
 }

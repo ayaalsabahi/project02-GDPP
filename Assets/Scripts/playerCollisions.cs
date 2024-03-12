@@ -6,7 +6,6 @@ public class playerCollisions : MonoBehaviour
 {
 
     [Header("Events")]
-
     public GameEvent gotKey;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -14,6 +13,7 @@ public class playerCollisions : MonoBehaviour
         if (collision.gameObject.CompareTag("Key1"))
         {
             gotKey.Raise();
+            Debug.Log("Player collided with key");
         }
     }
 

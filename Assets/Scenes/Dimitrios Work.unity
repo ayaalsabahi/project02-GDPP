@@ -803,6 +803,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties: {fileID: 11400000, guid: 3ee98dcedeed841598957c1aab00ee51, type: 2}
+  speed: 0
+  jump: 0
+  gravity: 0
+  sprite: {fileID: 0}
 --- !u!1 &1966210722
 GameObject:
   m_ObjectHideFlags: 0
