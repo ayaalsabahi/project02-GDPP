@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 811380982}
   - component: {fileID: 811380981}
   m_Layer: 0
-  m_Name: interactDoor (1)
+  m_Name: circleTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2948,7 +2948,7 @@ GameObject:
   - component: {fileID: 1648952325}
   - component: {fileID: 1648952324}
   m_Layer: 0
-  m_Name: textForPressE (1)
+  m_Name: circleInteract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
