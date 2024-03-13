@@ -32,7 +32,7 @@ public class tutorialManager : MonoBehaviour
         else
         {
             keyPressCount++;
-            if (keyPressCount == 3) keyPressedText.Raise();
+            if (keyPressCount >= 3) keyPressedText.Raise();
         }
 
     }
@@ -45,7 +45,7 @@ public class tutorialManager : MonoBehaviour
         else
         {
             doorPressCount++;
-            if (doorPressCount == 3) doorLockedText.Raise();
+            if (doorPressCount >= 3) doorLockedText.Raise();
         }
            
     }
