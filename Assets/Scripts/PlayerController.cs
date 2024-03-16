@@ -17,29 +17,31 @@ public class PlayerController : MonoBehaviour
     public float ghostMoveSpeed;
     public float ghostJumpStrength;
     public int ghostGrav = 0;
-    [SerializeField]
-    public Sprite ghostSprite;
+    // [SerializeField]
+    // public Sprite ghostSprite;
     //Jump Logic
     public bool isGrounded = true;
-    public bool isOnWall = true;
+    public bool isOnWall;
     //Inputs
     public PlayerInput playerControls;
     private InputAction movementControls;
     private InputAction jumpControls;
     private InputAction possessControls;
+    public GameObject playerSwitcher;
+    public PlayerSwitch playerSwitch;
     //Possession
-    public bool isPossessing;
-    GameObject closestDoll;
-    public DollController dollController;
-    public string possessingTag;
-    public bool isInDollRange;
-    public float dollRange = .5f;
-    [SerializeField]
-    public LayerMask dollLayer;
-    [SerializeField]
-    public LineRenderer line;
-    //Sprite and Animations
-    public SpriteRenderer spriteRenderer;
+    // public bool isPossessing;
+    // GameObject closestDoll;
+    // public DollController dollController;
+    // public string possessingTag;
+    // public bool isInDollRange;
+    // public float dollRange = .5f;
+    // [SerializeField]
+    // public LayerMask dollLayer;
+    // [SerializeField]
+    // public LineRenderer line;
+    // //Sprite and Animations
+    // public SpriteRenderer spriteRenderer;
 
 
     [Header("Events")]
@@ -49,9 +51,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerInput();
-        isPossessing = false;
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = ghostSprite;
+        isOnWall = false;
     }
     
     void OnEnable()
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerSwitch = playerSwitcher.GetComponent<PlayerSwitch>();
         ghostMoveSpeed = 7f;
         ghostJumpStrength = 13f;
         moveSpeed = ghostMoveSpeed;
@@ -98,29 +99,21 @@ public class PlayerController : MonoBehaviour
         else{
             rb.drag = 0;
         }
-        DrawCircle();
-        //debug purposes
-        if(!isPossessing)
-        {
-            DollDetector();
-        }
-        else{
-            // Debug.Log(closestDoll.GetComponent<DollController>().GetName());
-            dollController.transform.position = transform.position;
-        }
     }
 
     private void FixedUpdate()
     {
-        if(isPossessing)
-        {
-            rb.gravityScale = 3;
-            rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
-        }
-        else{
-            rb.gravityScale = ghostGrav;
-            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-        }
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
+        rb.gravityScale = 3;
+        // if(isPossessing)
+        // {
+        //     rb.gravityScale = 3;
+            
+        // }
+        // else{
+        //     rb.gravityScale = ghostGrav;
+        //     rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        // }
         //change velocity at fixed intervals allow flying as a ghost
     }
 
@@ -134,7 +127,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            isGrounded = true;
+            isOnWall = true;
         }
     }
 
@@ -145,12 +138,17 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             Debug.Log("off");
         }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            isOnWall = false;
+            Debug.Log("off");
+        }
     }
     //collision ground checks may change with event manager
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if(isGrounded)
+        if(isGrounded || isOnWall)
         {
             Debug.Log("jumping activatied");
             rb.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
@@ -159,104 +157,24 @@ public class PlayerController : MonoBehaviour
 
     private void Possess(InputAction.CallbackContext context)
     {
-        if(!isPossessing && isInDollRange)
-        {
-            isPossessing = true;
-            transform.position = dollController.transform.position;
-            dollController.Hide();
-            SetGhostProperties();
-            Debug.Log("we posses now");
-
-            //add an action sequence that the doll was possesed
-            bodyPossesed.Raise();
-
-        }
-        else if(isPossessing)
-        {
-            dollController.OnReleased();
-            // dollController.SendToGhost(transform.position);
-            // dollController.Show();
-            isPossessing = false;
-            SetGhostProperties();
-            Debug.Log("we cool");
-        }
-    }
-    //conects possess key to action
-
-    private void DollDetector()
-    {
-        // Define the radius for the overlap circle
-        float detectionRadius = dollRange;
-
-        // Get all colliders within the detection radius and on the dollLayer
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(gameObject.transform.position, detectionRadius, dollLayer);
-
-        GameObject closestDoll = null;
-        float closestDistance = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
-
-        // Iterate through all hit colliders to find the closest doll
-        foreach (var hitCollider in hitColliders)
-        {
-            GameObject doll = hitCollider.gameObject;
-            float distance = (doll.transform.position - currentPosition).sqrMagnitude;
-
-            if (distance < closestDistance)
-            {
-                closestDoll = doll;
-                closestDistance = distance;
-            }
-        }
-        if (closestDoll != null)
-        {
-            isInDollRange = true;
-            dollController = closestDoll.GetComponent<DollController>();
-            Debug.Log("touching");
-        }
-        else
-        {
-            isInDollRange = false;
-            Debug.Log("not touching");
-        }
+        playerSwitch.SwitchPlayer();   
+        Debug.Log("switching");
     }
 
-    private void DrawCircle()
-    {
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.useWorldSpace = false; // Ensure the LineRenderer positions are relative to the GameObject
-
-        Vector2 center = Vector2.zero; // Center in local space
-        float r = dollRange;
-        int segments = 360;
-        lineRenderer.positionCount = segments + 1; // Set the number of segments (plus one to close the circle)
-
-        float deltaTheta = (2f * Mathf.PI) / segments; // Delta between each segment
-        float theta = 0f;
-
-        for (int index = 0; index <= segments; index++) // <= to close the circle
-        {
-            float x = r * Mathf.Cos(theta);
-            float y = r * Mathf.Sin(theta);
-            Vector3 pos = new Vector3(x, y, 0) + (Vector3)center; // Convert Vector2 center to Vector3
-            lineRenderer.SetPosition(index, pos);
-            theta += deltaTheta;
-        }
-    }
-
-    public void SetGhostProperties()
-    {
-        if(isPossessing)
-        {
-            moveSpeed = dollController.properties.moveSpeed;
-            jumpStrength = dollController.properties.jumpStrength;
-            rb.gravityScale = dollController.properties.gravity;
-            spriteRenderer.sprite = dollController.properties.dollSprite;
-        }
-        else{
-            moveSpeed = ghostMoveSpeed;
-            jumpStrength = ghostJumpStrength;
-            rb.gravityScale = ghostGrav;
-            spriteRenderer.sprite = ghostSprite;  
-        }
-    }
+    // public void SetGhostProperties()
+    // {
+    //     if(isPossessing)
+    //     {
+    //         moveSpeed = dollController.properties.moveSpeed;
+    //         jumpStrength = dollController.properties.jumpStrength;
+    //         rb.gravityScale = dollController.properties.gravity;
+    //         spriteRenderer.sprite = dollController.properties.dollSprite;
+    //     }
+    //     else{
+    //         moveSpeed = ghostMoveSpeed;
+    //         jumpStrength = ghostJumpStrength;
+    //         rb.gravityScale = ghostGrav;
+    //         spriteRenderer.sprite = ghostSprite;  
+    //     }
+    // }
 }
