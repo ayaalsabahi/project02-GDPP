@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private InputAction movementControls;
     private InputAction jumpControls;
     private InputAction possessControls;
+    private InputAction interactControls;
     public GameObject playerSwitcher;
     public PlayerSwitch playerSwitch;
     //Interacting
@@ -55,6 +56,10 @@ public class PlayerController : MonoBehaviour
         possessControls = playerControls.Ghost.Possess;
         possessControls.Enable();
         possessControls.performed += Possess;
+
+        interactControls = playerControls.Ghost.Interact;
+        interactControls.Enable();
+        interactControls.performed += Interact;
     }
 
     void OnDisable()
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
         movementControls.Disable();
         jumpControls.Disable();
         possessControls.Disable();
+        interactControls.Disable();
     }
     //required to set controls
 
@@ -141,21 +147,25 @@ public class PlayerController : MonoBehaviour
         bodyPossesed.Raise();
     }
 
-    IEnumerator Interact()
-   {
-       var facingDir = new Vector3(moveDirection.x,moveDirection.y);
-       var interactPos = transform.position + facingDir/6;
+    private void Interact(InputAction.CallbackContext context)
+    {
+        StartCoroutine(InteractCoroutine());
+        Debug.Log("interacting");
+    }
+
+    IEnumerator InteractCoroutine()
+    {
+        var facingDir = new Vector3(moveDirection.x,moveDirection.y);
+        var interactPos = transform.position + facingDir/6;
 
 
-       Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
-      
-       var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
-       if(collider != null)
-       {
-           yield return collider.GetComponent<Interactable>()?.Interact();
-       }
-
-
-   }
+        Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
+        
+        var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
+        if(collider != null)
+        {
+            yield return collider.GetComponent<Interactable>()?.Interact();
+        }
+    }
 
 }
