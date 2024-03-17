@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         playerSwitch.SwitchPlayer();   
         Debug.Log("switching");
+        bodyPossesed.Raise();
     }
 
     IEnumerator Interact()
