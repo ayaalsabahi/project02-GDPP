@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 523b75dbb12424cfe9e472756500f528
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bottomDrawer: {fileID: 11400000, guid: b76a7c24297314435807cf9ce01361c4, type: 2}
+  - middleDrawer: {fileID: 11400000, guid: 2a9b92d8c526a41a6b9d5f9ad88f1718, type: 2}
+  - topDrawer: {fileID: 11400000, guid: 79a56222597c3401aa377394b60eb224, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
