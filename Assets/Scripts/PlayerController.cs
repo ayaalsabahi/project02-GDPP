@@ -29,19 +29,8 @@ public class PlayerController : MonoBehaviour
     private InputAction possessControls;
     public GameObject playerSwitcher;
     public PlayerSwitch playerSwitch;
-    //Possession
-    // public bool isPossessing;
-    // GameObject closestDoll;
-    // public DollController dollController;
-    // public string possessingTag;
-    // public bool isInDollRange;
-    // public float dollRange = .5f;
-    // [SerializeField]
-    // public LayerMask dollLayer;
-    // [SerializeField]
-    // public LineRenderer line;
-    // //Sprite and Animations
-    // public SpriteRenderer spriteRenderer;
+    //Interacting
+    public LayerMask interactableLayer;
 
 
     [Header("Events")]
@@ -105,16 +94,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
         rb.gravityScale = 3;
-        // if(isPossessing)
-        // {
-        //     rb.gravityScale = 3;
-            
-        // }
-        // else{
-        //     rb.gravityScale = ghostGrav;
-        //     rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-        // }
-        //change velocity at fixed intervals allow flying as a ghost
     }
 
 
@@ -161,20 +140,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("switching");
     }
 
-    // public void SetGhostProperties()
-    // {
-    //     if(isPossessing)
-    //     {
-    //         moveSpeed = dollController.properties.moveSpeed;
-    //         jumpStrength = dollController.properties.jumpStrength;
-    //         rb.gravityScale = dollController.properties.gravity;
-    //         spriteRenderer.sprite = dollController.properties.dollSprite;
-    //     }
-    //     else{
-    //         moveSpeed = ghostMoveSpeed;
-    //         jumpStrength = ghostJumpStrength;
-    //         rb.gravityScale = ghostGrav;
-    //         spriteRenderer.sprite = ghostSprite;  
-    //     }
-    // }
+    IEnumerator Interact()
+   {
+       var facingDir = new Vector3(moveDirection.x,moveDirection.y);
+       var interactPos = transform.position + facingDir/6;
+
+
+       Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
+      
+       var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
+       if(collider != null)
+       {
+           yield return collider.GetComponent<Interactable>()?.Interact();
+       }
+
+
+   }
+
 }
