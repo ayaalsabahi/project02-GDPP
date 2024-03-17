@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public PlayerSwitch playerSwitch;
     //Interacting
     public LayerMask interactableLayer;
+    public Vector2 lastMoveDirection = Vector2.zero;
 
 
     [Header("Events")]
@@ -87,6 +88,11 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = movementControls.ReadValue<Vector2>();
         //update movement base on key inputs
+        if(moveDirection != Vector2.zero)
+        {
+            lastMoveDirection = moveDirection;
+        }
+        //update facing dir
         if(isGrounded)
         {
             rb.drag = groundDrag;
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour
         else{
             rb.drag = 0;
         }
+        DrawLineInFront();
     }
 
     private void FixedUpdate()
@@ -155,17 +162,28 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator InteractCoroutine()
     {
-        var facingDir = new Vector3(moveDirection.x,moveDirection.y);
-        var interactPos = transform.position + facingDir/6;
+        Vector3 start = transform.position;
+        // Calculate the interaction position based on the last move direction
+        Vector3 interactPos = start + new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0) * 1.0f; // Adjust 1.0f to change the interaction distance
 
+        // Draw a line from the player to the interaction position
+        Debug.DrawLine(start, interactPos, Color.red, 1f);
 
-        Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
-        
-        var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
-        if(collider != null)
+        // Check for interactable objects at the interaction position
+        Collider2D collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
+        if (collider != null)
         {
             yield return collider.GetComponent<Interactable>()?.Interact();
         }
+    }
+
+    void DrawLineInFront()
+    {
+        Vector3 start = transform.position;
+        // Use lastMoveDirection to ensure the line is drawn in the last known direction of movement
+        Vector3 end = start + new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0).normalized * 1.0f; // Adjust 1.0f to change the line length
+
+        Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
     }
 
 }
