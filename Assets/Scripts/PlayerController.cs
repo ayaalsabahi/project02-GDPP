@@ -140,21 +140,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("switching");
     }
 
-//     IEnumerator Interact()
-//    {
-//        var facingDir = new Vector3(moveDirection.x,moveDirection.y);
-//        var interactPos = transform.position + facingDir/6;
+    IEnumerator Interact()
+   {
+       var facingDir = new Vector3(moveDirection.x,moveDirection.y);
+       var interactPos = transform.position + facingDir/6;
 
 
-//        Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
+       Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
       
-//        var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
-//        if(collider != null)
-//        {
-//            yield return collider.GetComponent<Interactable>()?.Interact();
-//        }
+       var collider = Physics2D.OverlapCircle(interactPos, .2f, interactableLayer);
+       if(collider != null)
+       {
+           yield return collider.GetComponent<Interactable>()?.Interact();
+       }
 
 
-//    }
+   }
 
 }

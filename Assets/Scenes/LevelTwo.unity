@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160586250}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Interactables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 394963215}
   - component: {fileID: 394963217}
   - component: {fileID: 394963216}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

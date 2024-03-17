@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433595359529472248}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.348146, y: -0.96762043, z: 0.053198528}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -172,4 +172,7 @@ MonoBehaviour:
   isOnWall: 1
   playerSwitcher: {fileID: 0}
   playerSwitch: {fileID: 0}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   bodyPossesed: {fileID: 0}

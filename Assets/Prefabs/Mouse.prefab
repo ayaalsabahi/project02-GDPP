@@ -184,5 +184,5 @@ MonoBehaviour:
   playerSwitch: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   bodyPossesed: {fileID: 0}
