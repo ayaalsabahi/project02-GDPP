@@ -14,9 +14,8 @@ public class PlayerController : MonoBehaviour
     public float groundDrag = 10;
     Vector2 moveDirection = Vector2.zero;
     //Ghost Properties
-    public float ghostMoveSpeed;
-    public float ghostJumpStrength;
-    public int ghostGrav = 3;
+    public float boyMoveSpeed;
+    public float boyJumpStrength;
     // [SerializeField]
     // public Sprite ghostSprite;
     //Jump Logic
@@ -34,6 +33,9 @@ public class PlayerController : MonoBehaviour
     //Interacting
     public LayerMask interactableLayer;
     public Vector2 lastMoveDirection = Vector2.zero;
+
+    public float mouseMoveSpeed;
+    public float mouseJumpStrength;
 
 
     [Header("Events")]
@@ -82,10 +84,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerSwitch = playerSwitcher.GetComponent<PlayerSwitch>();
-        ghostMoveSpeed = 7f;
-        ghostJumpStrength = 25f;
-        moveSpeed = ghostMoveSpeed;
-        jumpStrength = ghostJumpStrength;
+        boyMoveSpeed = 7f;
+        boyJumpStrength = 15f;
+        mouseMoveSpeed = 10f;
+        mouseJumpStrength = 7f;
+        moveSpeed = boyMoveSpeed;
+        jumpStrength = boyJumpStrength;
+        if(gameObject.name == "Mouse")
+        {
+            SetMouse();
+        }
         //initiate vars
     }
 
@@ -223,4 +231,9 @@ public class PlayerController : MonoBehaviour
         Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
     }
 
+    public void SetMouse()
+    {
+        moveSpeed = mouseMoveSpeed;
+        jumpStrength = mouseJumpStrength;
+    }
 }
