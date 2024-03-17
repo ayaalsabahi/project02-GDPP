@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     //Ghost Properties
     public float ghostMoveSpeed;
     public float ghostJumpStrength;
-    public int ghostGrav = 0;
+    public int ghostGrav = 3;
     // [SerializeField]
     // public Sprite ghostSprite;
     //Jump Logic
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpControls;
     private InputAction possessControls;
     private InputAction interactControls;
+    private InputAction dropControls;
     public GameObject playerSwitcher;
     public PlayerSwitch playerSwitch;
     //Interacting
@@ -61,6 +62,10 @@ public class PlayerController : MonoBehaviour
         interactControls = playerControls.Ghost.Interact;
         interactControls.Enable();
         interactControls.performed += Interact;
+
+        dropControls = playerControls.Ghost.Drop;
+        dropControls.Enable();
+        dropControls.performed += Drop;
     }
 
     void OnDisable()
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
         jumpControls.Disable();
         possessControls.Disable();
         interactControls.Disable();
+        dropControls.Disable();
     }
     //required to set controls
 
@@ -77,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         playerSwitch = playerSwitcher.GetComponent<PlayerSwitch>();
         ghostMoveSpeed = 7f;
-        ghostJumpStrength = 13f;
+        ghostJumpStrength = 25f;
         moveSpeed = ghostMoveSpeed;
         jumpStrength = ghostJumpStrength;
         //initiate vars
@@ -153,6 +159,37 @@ public class PlayerController : MonoBehaviour
         Debug.Log("switching");
         bodyPossesed.Raise();
     }
+
+    private void Drop(InputAction.CallbackContext context)
+    {
+        Debug.Log("dropping");
+        // Disable the collider component
+        GetComponent<Collider2D>().enabled = false;
+
+        // Start the coroutine to check and re-enable the collider when the GameObject isn't touching anything
+        StartCoroutine(ReEnableColliderWhenNotTouching());
+    }
+
+    IEnumerator ReEnableColliderWhenNotTouching()
+    {
+        // Wait for a short delay to allow the object to start falling through
+        yield return new WaitForSeconds(.3f); // Adjust the delay time as needed
+
+        // Continuously check if the GameObject is no longer touching anything
+        while (true)
+        {
+            // If the GameObject's Rigidbody2D is not in contact with anything, re-enable the collider
+            if (!rb.IsTouchingLayers())
+            {
+                GetComponent<Collider2D>().enabled = true;
+                Debug.Log("Collider re-enabled");
+                yield break; // Exit the coroutine
+            }
+            // Wait until the next fixed update to check again
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
 
     private void Interact(InputAction.CallbackContext context)
     {
