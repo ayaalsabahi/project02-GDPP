@@ -18,13 +18,11 @@ public class buttonLevelOne : MonoBehaviour
         {
             LeanTween.moveX(drawerBottom, -0.00001f, 1f).setEase(LeanTweenType.easeOutQuad);
             draweBottomOpen = true;
-            Debug.Log("happy");
         }
         else
         {
-            LeanTween.moveX(drawerBottom, 0.00002f, 1f).setEase(LeanTweenType.easeOutQuad);
+            LeanTween.moveX(drawerBottom, 2, 1f).setEase(LeanTweenType.easeOutQuad);
             draweBottomOpen = false;
-            Debug.Log("sad");
         }
         
     }
