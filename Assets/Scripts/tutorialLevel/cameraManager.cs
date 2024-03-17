@@ -8,24 +8,19 @@ public class cameraManager : MonoBehaviour
     public Camera dollCamera;
     public Camera possesionCamera;
 
-    private void Start()
-    {
-        dollCamera.enabled = true;
-        possesionCamera.enabled = false;
-    }
 
-    public void swicthCameras()
+   public void swicthCameras()
     {
-        if (!isDoll)
+        if (isDoll)
         {
-            isDoll = true;
+            isDoll = false;
             dollCamera.enabled = false;
             possesionCamera.enabled = true;
 
         }
         else
         {
-            isDoll = false;
+            isDoll = true;
             dollCamera.enabled = true;
             possesionCamera.enabled = false;
 
