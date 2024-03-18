@@ -19,8 +19,8 @@ TagManager:
   - Ghost
   - P1Platforms
   - P2Platforms
-  - Interactables
-  - 
+  - text
+  - interactibles
   - 
   - 
   - 
@@ -43,9 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: buttons
-    uniqueID: 1026831777
-    locked: 0
   - name: decor
     uniqueID: 12560835
+    locked: 0
+  - name: levelOneButtons
+    uniqueID: 4185249505
     locked: 0
