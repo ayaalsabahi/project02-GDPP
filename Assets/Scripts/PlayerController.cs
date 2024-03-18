@@ -114,7 +114,6 @@ public class PlayerController : MonoBehaviour
         else{
             rb.drag = 0;
         }
-        // DrawLineInFront();
     }
 
     private void FixedUpdate()
@@ -170,12 +169,15 @@ public class PlayerController : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
-        Debug.Log("dropping");
-        // Disable the collider component
-        GetComponent<Collider2D>().enabled = false;
+        if(CheckForPlats())
+        {
+            Debug.Log("dropping");
+            // Disable the collider component
+            GetComponent<Collider2D>().enabled = false;
 
-        // Start the coroutine to check and re-enable the collider when the GameObject isn't touching anything
-        StartCoroutine(ReEnableColliderWhenNotTouching());
+            // Start the coroutine to check and re-enable the collider when the GameObject isn't touching anything
+            StartCoroutine(ReEnableColliderWhenNotTouching());
+        }
     }
 
     IEnumerator ReEnableColliderWhenNotTouching()
@@ -242,6 +244,37 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
     }
+
+    void DrawLineUnder()
+    {
+        Vector3 start = transform.position;
+        Vector3 end = start + new Vector3(0, -1f, 0).normalized * 1.0f; // Adjust 1.0f to change the line length
+
+        Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
+
+    }
+
+    public bool CheckForPlats()
+    {
+        Vector3 start = transform.position;
+        // Adjusting the direction and length directly without normalizing and then multiplying, since it's a downward vector of fixed length
+        Vector3 endPos = start + new Vector3(0, -1f, 0); 
+
+        // Define the size of the box you want to use for the cast
+        Vector2 boxSize = new Vector2(1.0f, 0.1f); // Adjust the width to match the player's width and a small height for the cast
+
+        // Perform a BoxCast directly downwards from the start position
+        RaycastHit2D hit = Physics2D.BoxCast(start, boxSize, 0f, Vector2.down, 1f, LayerMask.GetMask("Ground")); // Use the appropriate layer mask for your platforms
+
+        if (hit.collider != null && hit.collider.CompareTag("Platform")) // Check if the hit collider has the "Platform" tag
+        {
+            Debug.Log("Standing on Platform: " + hit.collider.name);
+            return true; // Standing on a platform
+        }
+
+        return false; // Not standing on a platform
+    }
+
 
     public void SetMouse()
     {
