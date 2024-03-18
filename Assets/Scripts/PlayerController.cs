@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         else{
             rb.drag = 0;
         }
-        DrawLineInFront();
+        // DrawLineInFront();
     }
 
     private void FixedUpdate()
@@ -205,20 +205,32 @@ public class PlayerController : MonoBehaviour
         Debug.Log("interacting");
     }
 
+
     IEnumerator InteractCoroutine()
     {
         Vector3 start = transform.position;
         // Calculate the interaction position based on the last move direction
-        Vector3 interactPos = start + new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0) * 1.0f; // Adjust 1.0f to change the interaction distance
+        Vector3 interactPos = start + new Vector3(lastMoveDirection.x * 2, lastMoveDirection.y, 0) * 1.0f; // Adjust 1.0f to change the interaction distance
 
-        // Draw a line from the player to the interaction position
+        // Draw a line from the player to the interaction position for visualization
         Debug.DrawLine(start, interactPos, Color.red, 1f);
 
-        // Check for interactable objects at the interaction position
-        Collider2D collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
-        if (collider != null)
+        // Define the size of the box you want to use for the cast
+        Vector2 boxSize = new Vector2(0.2f, 0.2f); // Adjust the size as needed
+
+        // Calculate the direction from the start to the interaction position
+        Vector2 direction = (interactPos - start).normalized;
+
+        // Calculate the distance from the start to the interaction position
+        float distance = Vector2.Distance(start, interactPos);
+
+        // Perform a BoxCast from the start position in the direction of the interaction position
+        RaycastHit2D hit = Physics2D.BoxCast(start, boxSize, 0f, direction, distance, interactableLayer);
+        if (hit.collider != null)
         {
-            yield return collider.GetComponent<Interactable>()?.Interact();
+            Debug.Log("Hit: " + hit.collider.name);
+            // Perform the interaction
+            yield return hit.collider.GetComponent<Interactable>()?.Interact();
         }
     }
 
