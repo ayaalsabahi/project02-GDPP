@@ -9,6 +9,7 @@ public class buttonEventsLevelOne : MonoBehaviour
     public GameEvent bottomDrawer;
     public GameEvent middleDrawer;
     public GameEvent topDrawer;
+    public GameEvent switchPin;
 
 
     private void OnMouseDown()
@@ -26,7 +27,11 @@ public class buttonEventsLevelOne : MonoBehaviour
                 topDrawer.Raise();
                 break;
             case "pinPad":
-                SceneManager.LoadScene("pinpad");
+                switchPin.Raise();
+                break;
+            case "exitButton":
+                switchPin.Raise();
+                Debug.Log("pin switched");
                 break;
             default:
                 Debug.Log("Unknown object clicked!");

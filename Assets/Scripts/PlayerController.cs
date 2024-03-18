@@ -114,7 +114,6 @@ public class PlayerController : MonoBehaviour
         else{
             rb.drag = 0;
         }
-        DrawLineInFront();
     }
 
     private void FixedUpdate()
@@ -170,12 +169,15 @@ public class PlayerController : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
-        Debug.Log("dropping");
-        // Disable the collider component
-        GetComponent<Collider2D>().enabled = false;
+        if(CheckForPlats())
+        {
+            Debug.Log("dropping");
+            // Disable the collider component
+            GetComponent<Collider2D>().enabled = false;
 
-        // Start the coroutine to check and re-enable the collider when the GameObject isn't touching anything
-        StartCoroutine(ReEnableColliderWhenNotTouching());
+            // Start the coroutine to check and re-enable the collider when the GameObject isn't touching anything
+            StartCoroutine(ReEnableColliderWhenNotTouching());
+        }
     }
 
     IEnumerator ReEnableColliderWhenNotTouching()
@@ -205,20 +207,32 @@ public class PlayerController : MonoBehaviour
         Debug.Log("interacting");
     }
 
+
     IEnumerator InteractCoroutine()
     {
         Vector3 start = transform.position;
         // Calculate the interaction position based on the last move direction
-        Vector3 interactPos = start + new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0) * 1.0f; // Adjust 1.0f to change the interaction distance
+        Vector3 interactPos = start + new Vector3(lastMoveDirection.x * 2, lastMoveDirection.y, 0) * 1.0f; // Adjust 1.0f to change the interaction distance
 
-        // Draw a line from the player to the interaction position
+        // Draw a line from the player to the interaction position for visualization
         Debug.DrawLine(start, interactPos, Color.red, 1f);
 
-        // Check for interactable objects at the interaction position
-        Collider2D collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
-        if (collider != null)
+        // Define the size of the box you want to use for the cast
+        Vector2 boxSize = new Vector2(0.2f, 0.2f); // Adjust the size as needed
+
+        // Calculate the direction from the start to the interaction position
+        Vector2 direction = (interactPos - start).normalized;
+
+        // Calculate the distance from the start to the interaction position
+        float distance = Vector2.Distance(start, interactPos);
+
+        // Perform a BoxCast from the start position in the direction of the interaction position
+        RaycastHit2D hit = Physics2D.BoxCast(start, boxSize, 0f, direction, distance, interactableLayer);
+        if (hit.collider != null)
         {
-            yield return collider.GetComponent<Interactable>()?.Interact();
+            Debug.Log("Hit: " + hit.collider.name);
+            // Perform the interaction
+            yield return hit.collider.GetComponent<Interactable>()?.Interact();
         }
     }
 
@@ -230,6 +244,37 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
     }
+
+    void DrawLineUnder()
+    {
+        Vector3 start = transform.position;
+        Vector3 end = start + new Vector3(0, -1f, 0).normalized * 1.0f; // Adjust 1.0f to change the line length
+
+        Debug.DrawLine(start, end, Color.blue, 0.01f); // Draw line for a very short duration to make it seem continuous
+
+    }
+
+    public bool CheckForPlats()
+    {
+        Vector3 start = transform.position;
+        // Adjusting the direction and length directly without normalizing and then multiplying, since it's a downward vector of fixed length
+        Vector3 endPos = start + new Vector3(0, -1f, 0); 
+
+        // Define the size of the box you want to use for the cast
+        Vector2 boxSize = new Vector2(1.0f, 0.1f); // Adjust the width to match the player's width and a small height for the cast
+
+        // Perform a BoxCast directly downwards from the start position
+        RaycastHit2D hit = Physics2D.BoxCast(start, boxSize, 0f, Vector2.down, 1f, LayerMask.GetMask("Ground")); // Use the appropriate layer mask for your platforms
+
+        if (hit.collider != null && hit.collider.CompareTag("Platform")) // Check if the hit collider has the "Platform" tag
+        {
+            Debug.Log("Standing on Platform: " + hit.collider.name);
+            return true; // Standing on a platform
+        }
+
+        return false; // Not standing on a platform
+    }
+
 
     public void SetMouse()
     {

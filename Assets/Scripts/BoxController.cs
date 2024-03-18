@@ -18,17 +18,19 @@ public class BoxController : MonoBehaviour, Interactable
     {
         
     }
-
+    
     public IEnumerator Interact()
     { 
-        if(collider.enabled == true)
+        Debug.Log("touching box")
+;        if(collider.enabled == true)
         {
             collider.enabled = false;
-            rb.gravityScale = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         else{
             collider.enabled = true;
             rb.gravityScale = 1;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         yield break;
     }
