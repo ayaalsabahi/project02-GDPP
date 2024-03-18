@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class buttonEventsLevelOne : MonoBehaviour
 {
@@ -15,14 +16,17 @@ public class buttonEventsLevelOne : MonoBehaviour
         string objectName = gameObject.name;
         switch (objectName)
         {
-            case "bottomDrawer":
+            case "bottomDrawerButton":
                 bottomDrawer.Raise();
                 break;
-            case "middleDrawer":
+            case "middleDrawerButton":
                 middleDrawer.Raise();
                 break;
-            case "topDrawer":
+            case "topDrawerButton":
                 topDrawer.Raise();
+                break;
+            case "pinPad":
+                SceneManager.LoadScene("pinpad");
                 break;
             default:
                 Debug.Log("Unknown object clicked!");
