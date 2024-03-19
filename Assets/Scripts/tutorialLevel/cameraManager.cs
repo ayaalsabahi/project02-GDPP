@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class cameraManager : MonoBehaviour
@@ -11,12 +12,15 @@ public class cameraManager : MonoBehaviour
     public Camera dollCamera;
     public Camera possesionCamera;
     public Camera pinCamera;
-    
+
+
+    public GameObject inputPin; //text input box
 
     private void Start()
     {
         dollCamera.enabled = true;
         possesionCamera.enabled = false;
+        inputPin.SetActive(false);
     }
 
     //toggle between the mouse and boy camera 
@@ -45,21 +49,22 @@ public class cameraManager : MonoBehaviour
 
         if (isPin)
         {
-            Debug.Log("Camera switched 2");
             isPin = false; //swicth out of the pin scene
             pinCamera.enabled = false;
             pinCamera.enabled = false;
             if (isDoll) dollCamera.enabled = true;
             else possesionCamera.enabled = true;
-            
+            inputPin.SetActive(false);
+
+
         }
         else
         {
-            Debug.Log("Camera switched 1");
             isPin = true; //formerly was at the pin scene
             pinCamera.enabled = true;
             dollCamera.enabled = false;
             possesionCamera.enabled = false;
+            inputPin.SetActive(true);
 
         }
     }
