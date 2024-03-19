@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, Interactable
 {
-    public GameObject door;
+    //public GameObject door;
     public string code;
+    public GameObject childDoor;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && InventoryController.S.hasKey)
+        {
+            StartCoroutine(Interact());
+        }
+    }
+
     public IEnumerator Interact()
     {
         OpenDoor(); 
@@ -14,7 +24,7 @@ public class DoorController : MonoBehaviour, Interactable
 
     public void OpenDoor()
     {
-        door.GetComponent<SpriteRenderer>().enabled = false;
-        door.GetComponent<BoxCollider2D>().enabled = false;
+        childDoor.GetComponent<BoxCollider2D>().enabled = false;
+        childDoor.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
