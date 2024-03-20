@@ -11,7 +11,6 @@ public class BoxController : MonoBehaviour, Interactable
     {
         collider = gameObject.GetComponent<BoxCollider2D>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     // Update is called once per frame
@@ -22,8 +21,8 @@ public class BoxController : MonoBehaviour, Interactable
     
     public IEnumerator Interact()
     { 
-        Debug.Log("touching box");
-        if(collider.enabled == true)
+        Debug.Log("touching box")
+;        if(collider.enabled == true)
         {
             collider.enabled = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;

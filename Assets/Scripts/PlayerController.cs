@@ -36,10 +36,6 @@ public class PlayerController : MonoBehaviour
 
     public float mouseMoveSpeed;
     public float mouseJumpStrength;
-    private Coroutine interactRoutine;  // Holds the reference to the interaction coroutine
-
-    bool isInteracting = false;
-
 
 
     [Header("Events")]
@@ -67,9 +63,7 @@ public class PlayerController : MonoBehaviour
 
         interactControls = playerControls.Ghost.Interact;
         interactControls.Enable();
-        // interactControls.performed += Interact;
-        interactControls.started += InteractStart;  // Start interaction
-        interactControls.canceled += InteractEnd;   // End interaction
+        interactControls.performed += Interact;
 
         dropControls = playerControls.Ghost.Drop;
         dropControls.Enable();
@@ -119,11 +113,6 @@ public class PlayerController : MonoBehaviour
         }
         else{
             rb.drag = 0;
-        }
-        if(isInteracting)
-        {
-            Debug.Log("interact loop");
-            StartCoroutine(InteractCoroutine());
         }
     }
 
@@ -211,17 +200,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void InteractStart(InputAction.CallbackContext context)
-    {
-        Debug.Log("interact start");
-        isInteracting = true;
-    }
-
-    private void InteractEnd(InputAction.CallbackContext context)
-    {
-        Debug.Log("InteractEnd called");
-        isInteracting = false;
-    }
 
     private void Interact(InputAction.CallbackContext context)
     {
