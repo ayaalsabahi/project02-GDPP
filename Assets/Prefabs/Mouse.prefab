@@ -175,14 +175,16 @@ MonoBehaviour:
   moveSpeed: 0
   jumpStrength: 0
   groundDrag: 10
-  ghostMoveSpeed: 0
-  ghostJumpStrength: 0
-  ghostGrav: 0
+  boyMoveSpeed: 0
+  boyJumpStrength: 0
   isGrounded: 1
   isOnWall: 1
   playerSwitcher: {fileID: 0}
   playerSwitch: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 4096
-  bodyPossesed: {fileID: 0}
+    m_Bits: 8192
+  lastMoveDirection: {x: 0, y: 0}
+  mouseMoveSpeed: 0
+  mouseJumpStrength: 0
+  bodyPossesed: {fileID: 11400000, guid: 78b2c4c9c9f974b289ca82a7c79b9a17, type: 2}
