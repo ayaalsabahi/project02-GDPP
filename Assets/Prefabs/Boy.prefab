@@ -140,7 +140,6 @@ MonoBehaviour:
   playerSwitch: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
-<<<<<<< Updated upstream
     m_Bits: 4096
   lastMoveDirection: {x: 0, y: 0}
   mouseMoveSpeed: 0
@@ -365,10 +364,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 86db60f558f4d4cc4929fbc63b1db948, type: 3}
   m_PrefabInstance: {fileID: 1699225009029198389}
   m_PrefabAsset: {fileID: 0}
-=======
-    m_Bits: 8192
-  lastMoveDirection: {x: 0, y: 0}
-  mouseMoveSpeed: 0
-  mouseJumpStrength: 0
-  bodyPossesed: {fileID: 11400000, guid: 78b2c4c9c9f974b289ca82a7c79b9a17, type: 2}
->>>>>>> Stashed changes
