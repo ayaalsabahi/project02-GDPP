@@ -20,6 +20,7 @@ public class cameraManager : MonoBehaviour
     {
         dollCamera.enabled = true;
         possesionCamera.enabled = false;
+        pinCamera.enabled = false;
         inputPin.SetActive(false);
     }
 

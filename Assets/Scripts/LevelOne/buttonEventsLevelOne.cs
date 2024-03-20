@@ -33,6 +33,9 @@ public class buttonEventsLevelOne : MonoBehaviour
                 switchPin.Raise();
                 Debug.Log("pin switched");
                 break;
+            case "doorExit":
+                SceneManager.LoadScene("LevelTwo");
+                break;
             default:
                 Debug.Log("Unknown object clicked!");
                 break;
