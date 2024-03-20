@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength;
     public float groundDrag = 10;
     Vector2 moveDirection = Vector2.zero;
+    private bool facingRight = true;
     //Ghost Properties
     public float boyMoveSpeed;
     public float boyJumpStrength;
@@ -106,8 +107,20 @@ public class PlayerController : MonoBehaviour
         {
             lastMoveDirection = moveDirection;
         }
+
+        if (moveDirection.x < -0.01f && facingRight)
+        {
+            facingRight = false;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+        else if (moveDirection.x >= 0.1f && !facingRight)
+        {
+            facingRight = true;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+
         //update facing dir
-        if(isGrounded)
+        if (isGrounded)
         {
             rb.drag = groundDrag;
         }
