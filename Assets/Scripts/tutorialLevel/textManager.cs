@@ -9,6 +9,7 @@ public class textManager : MonoBehaviour
     //dialogue strings
     private string keyLocked = "You are too small to fit through!";
     private string doorLocked = "You need a key first...";
+    private string doorUnlocked = "It's unlocked... but I'm too short!";
 
     private void Start()
     {
@@ -27,6 +28,13 @@ public class textManager : MonoBehaviour
     public void doorText()
     {
         dialogueBox.text = doorLocked;
+        dialogueBox.gameObject.SetActive(true);
+        Invoke("HideText", 3); //invoke the hide test funciton after 3 seconds 
+    }
+
+    public void unlockedDoorText()
+    {
+        dialogueBox.text = doorUnlocked;
         dialogueBox.gameObject.SetActive(true);
         Invoke("HideText", 3); //invoke the hide test funciton after 3 seconds 
     }

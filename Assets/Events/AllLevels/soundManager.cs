@@ -92,4 +92,14 @@ public class soundManager : MonoBehaviour
         }
 
     }
+
+    public void keySound()
+    {
+        getKeySource.Play();
+    }
+
+    public void doorSound()
+    {
+        unlockingDoorSource.Play();
+    }
 }
