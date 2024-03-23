@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160586250}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Interactables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 323824497}
   - component: {fileID: 323824499}
   - component: {fileID: 323824498}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ Transform:
   m_GameObject: {fileID: 323824495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.82, y: -5.93, z: 0.10950568}
+  m_LocalPosition: {x: -11.82, y: -7.86, z: 0.10950568}
   m_LocalScale: {x: 0.4105, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82242afc625e04ab3bd053e5558afe48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lever: {fileID: 0}
+  lever: {fileID: 1777485957}
   leverRB: {fileID: 0}
   moveSpeed: 0
 --- !u!61 &323824499
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 394963217}
   - component: {fileID: 394963216}
   - component: {fileID: 394963218}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 527029487}
   - component: {fileID: 527029489}
   - component: {fileID: 527029490}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Top
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ Transform:
   m_GameObject: {fileID: 527029485}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8495283, y: -1.1527858, z: -0.08820966}
+  m_LocalPosition: {x: 1.8495283, y: -1.01, z: -0.08820966}
   m_LocalScale: {x: 1.6, y: 0.11536, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1667,7 +1667,7 @@ Transform:
   m_GameObject: {fileID: 752538623}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.65, y: 4.41, z: 0.05746589}
+  m_LocalPosition: {x: -10.65, y: 4.52, z: 0.05746589}
   m_LocalScale: {x: 4.7671876, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1887,6 +1887,14 @@ PrefabInstance:
       propertyPath: playerSwitcher
       value: 
       objectReference: {fileID: 694057925}
+    - target: {fileID: 8746693540795140527, guid: 0aa9be04d03474071b84261e989f2216, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1088
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746693540795140527, guid: 0aa9be04d03474071b84261e989f2216, type: 3}
+      propertyPath: interactableLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2050,11 +2058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966836429239301717, guid: 457fff30747fc489189efa9afacccef1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.07
+      value: -4.89
       objectReference: {fileID: 0}
     - target: {fileID: 2966836429239301717, guid: 457fff30747fc489189efa9afacccef1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.96762043
+      value: -2.14
       objectReference: {fileID: 0}
     - target: {fileID: 2966836429239301717, guid: 457fff30747fc489189efa9afacccef1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2096,6 +2104,14 @@ PrefabInstance:
       propertyPath: playerSwitcher
       value: 
       objectReference: {fileID: 694057925}
+    - target: {fileID: 3569322352897174040, guid: 457fff30747fc489189efa9afacccef1, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1088
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569322352897174040, guid: 457fff30747fc489189efa9afacccef1, type: 3}
+      propertyPath: interactableLayer.m_Bits
+      value: 12288
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2484,7 +2500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610714101}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2536,7 +2552,7 @@ Transform:
   m_GameObject: {fileID: 1614638166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.34, y: 5.44, z: 0.05746589}
+  m_LocalPosition: {x: -5.76, y: 5.64, z: 0.05746589}
   m_LocalScale: {x: 4.7671876, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2731,7 +2747,7 @@ GameObject:
   - component: {fileID: 1777485961}
   - component: {fileID: 1777485960}
   - component: {fileID: 1777485959}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2746,8 +2762,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777485957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.7, y: 1.36, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.700001, y: 3.2900004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2924,11 +2940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8265344811015954589, guid: 98b4d32f57059466ca7d54779497904e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.53
+      value: 19.94
       objectReference: {fileID: 0}
     - target: {fileID: 8265344811015954589, guid: 98b4d32f57059466ca7d54779497904e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.62
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 8265344811015954589, guid: 98b4d32f57059466ca7d54779497904e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3139,7 +3155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ade95f63bac347c8b7e27bd027ef0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
+  col: {fileID: 0}
   rb: {fileID: 0}
 --- !u!61 &1969794274
 BoxCollider2D:

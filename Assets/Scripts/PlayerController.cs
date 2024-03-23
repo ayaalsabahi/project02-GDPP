@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public PlayerSwitch playerSwitch;
     //Interacting
     public LayerMask interactableLayer;
+    public LayerMask groundLayer;
+    public float groundCheckDistance;
+    public float mouseGroundCheckDistance;
     public Vector2 lastMoveDirection = Vector2.zero;
 
     public float mouseMoveSpeed;
@@ -85,10 +88,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerSwitch = playerSwitcher.GetComponent<PlayerSwitch>();
+        groundCheckDistance = 1.29f;
         boyMoveSpeed = 7f;
         boyJumpStrength = 15f;
         mouseMoveSpeed = 10f;
-        mouseJumpStrength = 7f;
+        mouseJumpStrength = 13f;
+        mouseGroundCheckDistance = .5f;
         moveSpeed = boyMoveSpeed;
         jumpStrength = boyJumpStrength;
         if(gameObject.name == "Mouse")
@@ -119,14 +124,19 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
+        isGrounded = GroundCheck();
+
         //update facing dir
         if (isGrounded)
         {
             rb.drag = groundDrag;
+            Debug.Log("on it");
         }
         else{
             rb.drag = 0;
+            Debug.Log("off it");
         }
+
     }
 
     private void FixedUpdate()
@@ -138,12 +148,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = true;
-            Debug.Log("on");
-        }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        // if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        // {
+        //     isGrounded = true;
+        //     Debug.Log("on");
+        // }
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             isOnWall = true;
         }
@@ -151,12 +161,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = false;
-            Debug.Log("off");
-        }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        // if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        // {
+        //     isGrounded = false;
+        //     Debug.Log("off");
+        // }
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             isOnWall = false;
             Debug.Log("off");
@@ -288,10 +298,25 @@ public class PlayerController : MonoBehaviour
         return false; // Not standing on a platform
     }
 
+    public bool GroundCheck()
+    {
+        Vector2 position = transform.position; // Starting position of the ray
+        Vector2 direction = Vector2.down; // Direction of the ray (downwards)
+        
+        // Cast a ray downward to check for ground
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, groundCheckDistance, groundLayer);
+
+        // Optionally, draw the ray in the scene view for debugging
+        Debug.DrawRay(position, direction * groundCheckDistance, Color.red);
+
+        return hit.collider != null;
+    }
+
 
     public void SetMouse()
     {
         moveSpeed = mouseMoveSpeed;
         jumpStrength = mouseJumpStrength;
+        groundCheckDistance = mouseGroundCheckDistance;
     }
 }

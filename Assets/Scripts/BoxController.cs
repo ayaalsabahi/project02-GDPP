@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BoxController : MonoBehaviour, Interactable
 {
-    public BoxCollider2D collider;
+    public BoxCollider2D col;
     public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        collider = gameObject.GetComponent<BoxCollider2D>();
+        col = gameObject.GetComponent<BoxCollider2D>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -22,13 +22,13 @@ public class BoxController : MonoBehaviour, Interactable
     public IEnumerator Interact()
     { 
         Debug.Log("touching box")
-;        if(collider.enabled == true)
+;        if(col.enabled == true)
         {
-            collider.enabled = false;
+            col.enabled = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         else{
-            collider.enabled = true;
+            col.enabled = true;
             rb.gravityScale = 1;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
