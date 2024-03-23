@@ -9,6 +9,8 @@ public class BoxController : MonoBehaviour, Interactable
     public Vector3 feetPos;  // Position of the boy's feet
     public bool boxOn;  // State of the box (tangible or intangible)
     public float yOffset;
+    public GameObject mouse;
+    public GameObject playerSwitcher;
 
     void Start()
     {
@@ -23,7 +25,7 @@ public class BoxController : MonoBehaviour, Interactable
     {
         if (!boxOn)
         {
-            BoyCheck();  // Check if the boy is above the box to make the top tangible
+            PlayerCheck();
         }
         else
         {
@@ -47,11 +49,27 @@ public class BoxController : MonoBehaviour, Interactable
 
         yield break;
     }
+    public void PlayerCheck()
+    {
+        if(playerSwitcher.GetComponent<PlayerSwitch>().player1Active)
+        {
+            BoyCheck();
+        }
+        else{
+            MouseCheck();
+        }
+    }
 
     public void BoyCheck()
     {
         // Make the top tangible only if the boy is above the top and the box is intangible
         top.GetComponent<BoxCollider2D>().enabled = (boy.transform.position + feetPos).y >= top.transform.position.y && !boxOn;
+    }
+
+    public void MouseCheck()
+    {
+        // Make the top tangible only if the boy is above the top and the box is intangible
+        top.GetComponent<BoxCollider2D>().enabled = (mouse.transform.position + feetPos).y >= top.transform.position.y && !boxOn;
     }
 }
 
