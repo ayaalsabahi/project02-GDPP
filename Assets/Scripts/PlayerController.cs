@@ -124,7 +124,8 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
-        isGrounded = GroundCheck();
+        //isGrounded = GroundCheck();
+        isGrounded = true;
 
         //update facing dir
         if (isGrounded)
@@ -132,7 +133,8 @@ public class PlayerController : MonoBehaviour
             rb.drag = groundDrag;
             Debug.Log("on it");
         }
-        else{
+        else
+        {
             rb.drag = 0;
             Debug.Log("off it");
         }

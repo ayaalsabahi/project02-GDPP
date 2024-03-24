@@ -67,7 +67,7 @@ public class tutorialManager : MonoBehaviour
             LeanTween.rotateX(doorSprite, rotationAngle, duration).setEase(LeanTweenType.easeInOutQuad); //rotate door
             soundManager.Instance.doorSound();
             dissapearingGround.SetActive(false); //maybe make this fade out later on? 
-            //Went through other scene 
+            
         }
 
         //add a sound later on 
