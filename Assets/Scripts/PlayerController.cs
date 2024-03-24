@@ -124,8 +124,8 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
-        //isGrounded = GroundCheck();
-        isGrounded = true;
+        isGrounded = GroundCheck();
+        // isGrounded = true;
 
         //update facing dir
         if (isGrounded)
