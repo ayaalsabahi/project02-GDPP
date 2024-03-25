@@ -21,6 +21,14 @@ public class ButtonController : MonoBehaviour, Interactable
         
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Box")) // Ensure your box GameObject is tagged "Box" in the editor
+        {
+            StartCoroutine(Interact());
+        }
+    }
+
     public IEnumerator Interact()
     { 
         // Unfreeze y-axis movement

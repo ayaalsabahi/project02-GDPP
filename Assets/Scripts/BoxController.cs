@@ -64,12 +64,16 @@ public class BoxController : MonoBehaviour, Interactable
     {
         // Make the top tangible only if the boy is above the top and the box is intangible
         top.GetComponent<BoxCollider2D>().enabled = (boy.transform.position + feetPos).y >= top.transform.position.y && !boxOn;
+        Debug.Log("boy feet position " + (boy.transform.position + feetPos));
+        Debug.Log("top position position " + top.transform.position.y);
     }
 
     public void MouseCheck()
     {
         // Make the top tangible only if the boy is above the top and the box is intangible
         top.GetComponent<BoxCollider2D>().enabled = (mouse.transform.position + feetPos).y >= top.transform.position.y && !boxOn;
+        Debug.Log("mouse feet position " + (mouse.transform.position + feetPos));
+        Debug.Log("top position position " + top.transform.position.y);
     }
 }
 
