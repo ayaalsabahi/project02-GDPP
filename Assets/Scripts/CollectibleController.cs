@@ -15,10 +15,20 @@ public class CollectibleController : MonoBehaviour
                 // play key get sound
                 Destroy(this.gameObject);
             }
-            else
+            else if (this.gameObject.tag == "Key2")
             {
+                InventoryController.S.AddObject(this.gameObject.tag);
+                // increase player speed
+                // play key get sound
+                Destroy(this.gameObject);
             }
-
+            else if (this.gameObject.tag == "Key3")
+            {
+                InventoryController.S.AddObject(this.gameObject.tag);
+                // increase player speed
+                // play key get sound
+                Destroy(this.gameObject);
+            }
         }
     }
 }
