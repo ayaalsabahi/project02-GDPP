@@ -7,6 +7,7 @@ public class BoxController : MonoBehaviour, Interactable
     public GameObject boy;  // Reference to the boy character
     public GameObject top;  // Reference to the top of the box
     public Vector3 feetPos;  // Position of the boy's feet
+    public Vector3 mouseFeetPos;
     public bool boxOn;  // State of the box (tangible or intangible)
     public float yOffset;
     public GameObject mouse;
@@ -17,6 +18,7 @@ public class BoxController : MonoBehaviour, Interactable
         col = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         feetPos = new Vector3(0, -0.5f, 0);
+        mouseFeetPos = new Vector3(0, 0, 0);
         yOffset = 0.446858f;
         //-0.4468589 perfect
     }
@@ -51,12 +53,15 @@ public class BoxController : MonoBehaviour, Interactable
     }
     public void PlayerCheck()
     {
-        if(playerSwitcher.GetComponent<PlayerSwitch>().player1Active)
+        if(!OnTop())
         {
-            BoyCheck();
-        }
-        else{
-            MouseCheck();
+            if(playerSwitcher.GetComponent<PlayerSwitch>().player1Active)
+            {
+                BoyCheck();
+            }
+            else{
+                MouseCheck();
+            }
         }
     }
 
@@ -71,9 +76,14 @@ public class BoxController : MonoBehaviour, Interactable
     public void MouseCheck()
     {
         // Make the top tangible only if the boy is above the top and the box is intangible
-        top.GetComponent<BoxCollider2D>().enabled = (mouse.transform.position + feetPos).y >= top.transform.position.y && !boxOn;
-        Debug.Log("mouse feet position " + (mouse.transform.position + feetPos));
+        top.GetComponent<BoxCollider2D>().enabled = (mouse.transform.position + mouseFeetPos).y >= top.transform.position.y && !boxOn;
+        Debug.Log("mouse feet position " + (mouse.transform.position + mouseFeetPos));
         Debug.Log("top position position " + top.transform.position.y);
+    }
+
+    public bool OnTop()
+    {
+        return false;
     }
 }
 

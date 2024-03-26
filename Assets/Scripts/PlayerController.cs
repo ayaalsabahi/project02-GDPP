@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         boyJumpStrength = 15f;
         mouseMoveSpeed = 10f;
         mouseJumpStrength = 13f;
-        mouseGroundCheckDistance = .5f;
+        mouseGroundCheckDistance = .4f;
         moveSpeed = boyMoveSpeed;
         jumpStrength = boyJumpStrength;
         if(gameObject.name == "Mouse")
@@ -335,16 +335,27 @@ public class PlayerController : MonoBehaviour
 
     public bool GroundCheck()
     {
-        Vector2 position = transform.position; // Starting position of the ray
-        Vector2 direction = Vector2.down; // Direction of the ray (downwards)
+        // Vector2 position = transform.position; // Starting position of the ray
+        // Vector2 direction = Vector2.down; // Direction of the ray (downwards)
         
-        // Cast a ray downward to check for ground
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, groundCheckDistance, groundLayer);
+        // // Cast a ray downward to check for ground
+        // RaycastHit2D hit = Physics2D.Raycast(position, direction, groundCheckDistance, groundLayer);
 
-        // Optionally, draw the ray in the scene view for debugging
-        Debug.DrawRay(position, direction * groundCheckDistance, Color.red);
+        // // Optionally, draw the ray in the scene view for debugging
+        // Debug.DrawRay(position, direction * groundCheckDistance, Color.red);
 
-        return hit.collider != null;
+        // return hit.collider != null;
+
+        Vector2 position = transform.position; // Starting position of the ray
+        Vector2 checkPoint = position + Vector2.down * groundCheckDistance; // End tip of the line
+
+        // Check if the end tip of the line overlaps with the ground
+        Collider2D collider = Physics2D.OverlapPoint(checkPoint, groundLayer);
+
+        // Optionally, draw a debug line in the scene view
+        Debug.DrawLine(position, checkPoint, Color.red);
+
+        return collider != null;
     }
 
 
