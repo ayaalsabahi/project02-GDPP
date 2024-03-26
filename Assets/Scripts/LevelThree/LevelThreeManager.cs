@@ -36,6 +36,11 @@ public class LevelThreeManager : MonoBehaviour
     {
         healthAmount -= damage;
         healthBarGreen.fillAmount = healthAmount / 100f;
+
+        if(healthAmount == 0)
+        {
+            deathSwitch(); //switch to death screen if ran out of health
+        }
     }
 
     public void enemyDied()
