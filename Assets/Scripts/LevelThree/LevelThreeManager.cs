@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelThreeManager : MonoBehaviour
 {
     public GameObject deathScreen;
     public GameObject escapeScreen;
+    public GameObject healthBar;
+
+    public Image healthBarGreen;
+    public float healthAmount = 100f;
+    public float damage = 30f;
+
     public Camera boyCamera;
     public Camera mousecamera;
+    public Camera mainCamera;
     public int enemyNum;
-    public GameObject escapeDoor; 
+    public GameObject escapeDoor;
+    public bool isOver = false;
+
 
     private void Start()
     {
@@ -18,16 +28,23 @@ public class LevelThreeManager : MonoBehaviour
         escapeDoor.SetActive(false);
         mousecamera.enabled = false;
         boyCamera.enabled = true;
+        mainCamera.enabled = false;
 
+    }
+
+    public void takeDamage()
+    {
+        healthAmount -= damage;
+        healthBarGreen.fillAmount = healthAmount / 100f;
     }
 
     public void enemyDied()
     {
         enemyNum -= 1;
 
-        if (enemyNum == 0)
+        if (enemyNum == 0 && !isOver)
         {
-            escapeDoor.SetActive(true);
+            escapeDoor.SetActive(true); //after all enemies are avoided, door pops open
             soundManager.Instance.keySound();
         }
     }
@@ -38,16 +55,22 @@ public class LevelThreeManager : MonoBehaviour
 
 
     //create a death function button
-    private void deathSwitch()
+    public void deathSwitch()
     {
         deathScreen.SetActive(true);
         boyCamera.enabled = false;
+        mainCamera.enabled = true;
+        isOver = true;
+        //deactivate health bar
     }
 
 
-    private void escapeSwitch()
+    public void escapeSwitch()
     {
         escapeScreen.SetActive(true);
         boyCamera.enabled = false;
+        mainCamera.enabled = true;
+        isOver = true;
+        //deactivate health bar 
     }
 }
