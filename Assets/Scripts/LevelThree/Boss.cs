@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     [Header("Events")]
     public GameEvent bigEnemy;
     public GameEvent smallEnemy;
+    public GameEvent enemyDeath;
     
     public Transform playerTrans;
     public float lowSpeed;
@@ -51,6 +52,7 @@ public class Boss : MonoBehaviour
         if (lifeSpan <= 0)
         {
             Destroy(gameObject);
+            enemyDeath.Raise();
         }
 
 
@@ -72,12 +74,12 @@ public class Boss : MonoBehaviour
             if (gameObject.CompareTag("BigEnemy"))
             {
                 // This is where you handle the logic for when the bigEnemy touches the player.
-                Debug.Log("Big enemy touched the player!");
+                bigEnemy.Raise();
             }
 
             if (gameObject.CompareTag("SmallEnemy"))
             {
-
+                smallEnemy.Raise();
             }
         }
     }
