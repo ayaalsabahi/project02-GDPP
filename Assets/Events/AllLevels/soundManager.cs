@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 [System.Serializable]
 public class soundManager : MonoBehaviour
@@ -28,43 +29,49 @@ public class soundManager : MonoBehaviour
     public static soundManager Instance { get; private set; }
 
     private void Awake()
-    {
-        // If there is an instance, and it's not me, delete myself.
 
+    {
+        // If there is an instance already, destroy this instance
         if (Instance != null && Instance != this)
         {
             Destroy(this);
+            Debug.Log("If in music");
         }
         else
         {
+            // Set this instance as the singleton instance
             Instance = this;
+
+            // Ensure the GameObject persists across scene changes
+            DontDestroyOnLoad(gameObject);
+
+            // Create AudioSource components
+            mouseSoundSource = gameObject.AddComponent<AudioSource>();
+            backgroundMusicSource = gameObject.AddComponent<AudioSource>();
+            possesionSource = gameObject.AddComponent<AudioSource>();
+            getKeySource = gameObject.AddComponent<AudioSource>();
+            slidingBoxSource = gameObject.AddComponent<AudioSource>();
+            unlockingDoorSource = gameObject.AddComponent<AudioSource>();
+
+            // Assign audio clips to AudioSource components
+            mouseSoundSource.clip = mouseSound;
+            backgroundMusicSource.clip = backgroundMusic;
+            possesionSource.clip = possesion;
+            getKeySource.clip = getKey;
+            slidingBoxSource.clip = slidingBox;
+            unlockingDoorSource.clip = unlockingDoor;
+
+            // Set loop for background music
+            backgroundMusicSource.loop = true;
+            backgroundMusicSource.Play();
+
+            // Start playing background music
+            //startMusic();
+            Debug.Log("Else in music");
         }
     }
 
-    //get audio source
-    private void Start()
-    {
-        mouseSoundSource = gameObject.AddComponent<AudioSource>();
-        backgroundMusicSource = gameObject.AddComponent<AudioSource>();
-        possesionSource = gameObject.AddComponent<AudioSource>();
-        getKeySource = gameObject.AddComponent<AudioSource>();
-        slidingBoxSource = gameObject.AddComponent<AudioSource>();
-        unlockingDoorSource = gameObject.AddComponent<AudioSource>();
-
-        mouseSoundSource.clip = mouseSound;  
-        backgroundMusicSource.clip = backgroundMusic;
-        possesionSource.clip = possesion;
-        getKeySource.clip = getKey;
-        slidingBoxSource.clip = slidingBox;
-        unlockingDoorSource.clip = unlockingDoor;
-
-        //which sounds loop 
-        backgroundMusicSource.loop = true;
-        mouseSoundSource.loop = true;
-
-
-        startMusic();
-    }
+    
 
 
     public void startMusic()
