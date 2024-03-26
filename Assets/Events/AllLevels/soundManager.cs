@@ -35,7 +35,6 @@ public class soundManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(this);
-            Debug.Log("If in music");
         }
         else
         {
@@ -65,9 +64,7 @@ public class soundManager : MonoBehaviour
             backgroundMusicSource.loop = true;
             backgroundMusicSource.Play();
 
-            // Start playing background music
-            //startMusic();
-            Debug.Log("Else in music");
+
         }
     }
 

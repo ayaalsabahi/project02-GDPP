@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public class bossAI : MonoBehaviour
+public class Boss : MonoBehaviour
 {
+    [Header("Events")]
+    public GameEvent bigEnemy;
+    public GameEvent smallEnemy;
+    
     public Transform playerTrans;
     public float lowSpeed;
     public float highSpeed;
@@ -18,11 +24,14 @@ public class bossAI : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentSpeed = Random.Range(lowSpeed, highSpeed); //decide a speed at random for the enemy
-       
+        currentSpeed = UnityEngine.Random.Range(lowSpeed, highSpeed); //decide a speed at random for the enemy
+
     }
 
 
@@ -34,22 +43,44 @@ public class bossAI : MonoBehaviour
 
         distanceToPlayer = Vector2.Distance(transform.position, playerTrans.position);
 
-        if(distanceToPlayer <= detectDistance)
+        if (distanceToPlayer <= detectDistance)
         {
             follow = true;
         }
 
-        if(lifeSpan <= 0)
+        if (lifeSpan <= 0)
         {
             Destroy(gameObject);
         }
-        
+
 
         if (follow)
         {
             lifeSpan -= Time.deltaTime;
             rb.MovePosition(rb.position + directionToPlayer * currentSpeed * Time.deltaTime);
         }
-        
+
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Check if the object that entered the trigger is tagged as "Player".
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
+            // Check if the enemy object has the tag "bigEnemy".
+            if (gameObject.CompareTag("BigEnemy"))
+            {
+                // This is where you handle the logic for when the bigEnemy touches the player.
+                Debug.Log("Big enemy touched the player!");
+            }
+
+            if (gameObject.CompareTag("SmallEnemy"))
+            {
+
+            }
+        }
+    }
+
+
 }
