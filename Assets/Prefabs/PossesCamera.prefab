@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7176563370097248640}
   - component: {fileID: 4237752668016841032}
   - component: {fileID: 5637884260722905219}
-  - component: {fileID: 3744301441120448684}
+  - component: {fileID: 8862067870775674017}
   m_Layer: 0
   m_Name: PossesCamera
   m_TagString: MainCamera
@@ -101,7 +101,7 @@ MonoBehaviour:
   followSpeed: 2
   target: {fileID: 0}
   yOffset: 3
---- !u!114 &3744301441120448684
+--- !u!114 &8862067870775674017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
