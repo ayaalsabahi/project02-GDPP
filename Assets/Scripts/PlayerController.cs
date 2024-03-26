@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         boyJumpStrength = 15f;
         mouseMoveSpeed = 10f;
         mouseJumpStrength = 13f;
-        mouseGroundCheckDistance = .4f;
+        mouseGroundCheckDistance = .2f;
         moveSpeed = boyMoveSpeed;
         jumpStrength = boyJumpStrength;
         if(gameObject.name == "Mouse")
