@@ -38,7 +38,7 @@ public class InventoryController : MonoBehaviour
             Debug.Log(hasKey2);
             //this.GetComponent<SpriteRenderer>().enabled = true;
         }
-        else if (obj == "Key2")
+        else if (obj == "Key3")
         {
             hasKey3 = true;
             Debug.Log(hasKey3);

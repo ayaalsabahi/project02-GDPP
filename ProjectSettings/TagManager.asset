@@ -10,6 +10,8 @@ TagManager:
   - Box
   - SmallEnemy
   - BigEnemy
+  - Key2
+  - Key3
   layers:
   - Default
   - TransparentFX
