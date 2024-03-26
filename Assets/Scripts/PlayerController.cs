@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     public float mouseJumpStrength;
     public Canvas pauseMenu;
 
+    bool isBoy;
+
 
     [Header("Events")]
 
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour
             SetMouse();
         }
         animator = GetComponentInChildren<Animator>();
+        isBoy = true;
         //initiate vars
     }
 
@@ -203,9 +206,11 @@ public class PlayerController : MonoBehaviour
 
     private void Possess(InputAction.CallbackContext context)
     {
-        playerSwitch.SwitchPlayer();   
+        playerSwitch.SwitchPlayer(animator);   
         Debug.Log("switching");
+        
         bodyPossesed.Raise();
+
     }
 
     private void OpenMenu(InputAction.CallbackContext context)
