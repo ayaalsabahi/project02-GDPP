@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4561090196823673144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5986779201329997074}
+  - component: {fileID: 401040255323109055}
+  - component: {fileID: 4519920035488536995}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5986779201329997074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561090196823673144}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -27.443058, y: 3.8743591, z: -0.16584587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &401040255323109055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561090196823673144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82356feb3579e4d6f86c80cba4d5a8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSound: {fileID: 8300000, guid: ba4a85cc3d0154ac3a5b018b75e6697f, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 2173e485dd82242a3b1a4ef9edaf3a65, type: 3}
+  possesion: {fileID: 8300000, guid: b200e31c7d1434d83be83d69ea90f304, type: 3}
+  getKey: {fileID: 8300000, guid: 183b4e811231c449c8aefd2b1db92305, type: 3}
+  slidingBox: {fileID: 8300000, guid: 722c3b7661d1f41fbbc57147dd0d637d, type: 3}
+  unlockingDoor: {fileID: 8300000, guid: edc00749a87b54ebea00326140c83170, type: 3}
+--- !u!114 &4519920035488536995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4561090196823673144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cd6881ecbef4c528606209da08c83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 78b2c4c9c9f974b289ca82a7c79b9a17, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 401040255323109055}
+        m_TargetAssemblyTypeName: soundManager, Assembly-CSharp
+        m_MethodName: justPossesed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Door
   - Box
+  - SmallEnemy
+  - BigEnemy
   layers:
   - Default
   - TransparentFX

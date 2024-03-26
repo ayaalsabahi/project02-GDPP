@@ -27,6 +27,8 @@ public class LevelOneManager : MonoBehaviour
         {
             LeanTween.moveLocalY(doorToLift, transform.localPosition.y + 0.1f, 2f)
             .setEase(LeanTweenType.easeOutQuad);
+            //play door unlocking
+            soundManager.Instance.doorSound();
         }
     }
 

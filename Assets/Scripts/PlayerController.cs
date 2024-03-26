@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private InputAction possessControls;
     private InputAction interactControls;
     private InputAction dropControls;
+    private InputAction settingsControls;
     public GameObject playerSwitcher;
     public PlayerSwitch playerSwitch;
     //Interacting
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public float mouseMoveSpeed;
     public float mouseJumpStrength;
+    public Canvas pauseMenu;
 
 
     [Header("Events")]
@@ -75,6 +77,10 @@ public class PlayerController : MonoBehaviour
         dropControls = playerControls.Ghost.Drop;
         dropControls.Enable();
         dropControls.performed += Drop;
+
+        settingsControls = playerControls.Ghost.Settings;
+        settingsControls.Enable();
+        settingsControls.performed += OpenMenu;
     }
 
     void OnDisable()
@@ -84,6 +90,7 @@ public class PlayerController : MonoBehaviour
         possessControls.Disable();
         interactControls.Disable();
         dropControls.Disable();
+        settingsControls.Disable();
     }
     //required to set controls
 
@@ -200,6 +207,23 @@ public class PlayerController : MonoBehaviour
         Debug.Log("switching");
         bodyPossesed.Raise();
     }
+
+    private void OpenMenu(InputAction.CallbackContext context)
+    {
+        Debug.Log("openmenu");
+        Debug.Log(pauseMenu.enabled);
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            pauseMenu.GetComponent<Canvas>().enabled = true;
+        }
+        else{
+            Debug.Log("openmenu2");
+            Time.timeScale = 1;
+            pauseMenu.GetComponent<Canvas>().enabled = false;
+        }
+    }
+
 
     private void Drop(InputAction.CallbackContext context)
     {

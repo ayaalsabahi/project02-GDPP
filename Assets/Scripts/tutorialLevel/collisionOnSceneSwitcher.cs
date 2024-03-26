@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class collisionOnSceneSwitcher : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public Transform playerTrans;
+    public float thresholdY = -5f;
+    
+    private void Update()
     {
-        // Check if the collision involves the other object
-        if (collision.gameObject.CompareTag("Player"))
+        if(playerTrans.position.y < -5f)
         {
-            Debug.Log("Reached switching of scene");
-            SceneManager.LoadScene("levelOne");
+            SceneManager.LoadScene("LevelOne");
         }
     }
 }
