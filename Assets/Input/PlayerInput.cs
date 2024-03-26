@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""98bb542e-0df4-4968-b134-f5ab8372888c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""934ca09b-94cc-4aed-8635-c78561d4fed0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db52dc37-686e-4db0-89b0-f12f68decf4b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +315,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Ghost_Possess = m_Ghost.FindAction("Possess", throwIfNotFound: true);
         m_Ghost_Interact = m_Ghost.FindAction("Interact", throwIfNotFound: true);
         m_Ghost_Drop = m_Ghost.FindAction("Drop", throwIfNotFound: true);
+        m_Ghost_Settings = m_Ghost.FindAction("Settings", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +382,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ghost_Possess;
     private readonly InputAction m_Ghost_Interact;
     private readonly InputAction m_Ghost_Drop;
+    private readonly InputAction m_Ghost_Settings;
     public struct GhostActions
     {
         private @PlayerInput m_Wrapper;
@@ -359,6 +392,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Possess => m_Wrapper.m_Ghost_Possess;
         public InputAction @Interact => m_Wrapper.m_Ghost_Interact;
         public InputAction @Drop => m_Wrapper.m_Ghost_Drop;
+        public InputAction @Settings => m_Wrapper.m_Ghost_Settings;
         public InputActionMap Get() { return m_Wrapper.m_Ghost; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -383,6 +417,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
+            @Settings.started += instance.OnSettings;
+            @Settings.performed += instance.OnSettings;
+            @Settings.canceled += instance.OnSettings;
         }
 
         private void UnregisterCallbacks(IGhostActions instance)
@@ -402,6 +439,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
+            @Settings.started -= instance.OnSettings;
+            @Settings.performed -= instance.OnSettings;
+            @Settings.canceled -= instance.OnSettings;
         }
 
         public void RemoveCallbacks(IGhostActions instance)
@@ -426,5 +466,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPossess(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnSettings(InputAction.CallbackContext context);
     }
 }
