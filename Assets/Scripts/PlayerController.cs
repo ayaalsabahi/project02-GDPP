@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     public float mouseGroundCheckDistance;
     public Vector2 lastMoveDirection = Vector2.zero;
 
+    private Animator animator;
+
     public float mouseMoveSpeed;
     public float mouseJumpStrength;
     public Canvas pauseMenu;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         playerControls = new PlayerInput();
         isOnWall = false;
     }
+
     
     void OnEnable()
     {
@@ -107,6 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             SetMouse();
         }
+        animator = GetComponentInChildren<Animator>();
         //initiate vars
     }
 
@@ -133,6 +137,11 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = GroundCheck();
         // isGrounded = true;
+
+        if (animator) {
+            animator.SetFloat("moveSpeed", Mathf.Abs(moveDirection.x));
+            animator.SetBool("isGrounded", isGrounded);
+        }
 
         //update facing dir
         if (isGrounded)

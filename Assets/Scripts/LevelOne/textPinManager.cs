@@ -41,7 +41,6 @@ public class textPinManager : MonoBehaviour
             //if the number contains a letter
             foreach (char c in inputStr)
             {
-                Debug.Log(c);
                 if (char.IsLetter(c))
                 {
                     headertext.text = letterStr;
