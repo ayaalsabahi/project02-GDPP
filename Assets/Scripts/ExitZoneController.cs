@@ -18,7 +18,7 @@ public class ExitZoneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerCount > 1)
+        if(playerCount >= 1)
         {
             SceneManager.LoadScene("LevelThree");
         }
