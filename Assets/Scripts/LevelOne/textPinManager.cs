@@ -15,7 +15,7 @@ public class textPinManager : MonoBehaviour
     private string doorOpened = "Door unlocked!";
     private string letterStr = "Numbers only..."; 
     private string startType = "Type 4 numbers here";
-    private string correctSequenceStr = "1234";
+    private string correctSequenceStr = "3632"; //3 shoes, 6 frames, 3 shoes, 2 shelves
 
     bool isLetter = false;
 
@@ -36,7 +36,7 @@ public class textPinManager : MonoBehaviour
     {
         if (UnityEngine.Input.GetKey(KeyCode.Return) || UnityEngine.Input.GetKey(KeyCode.KeypadEnter))
         {
-            Debug.Log("reached checking");
+            
             Debug.Log(inputStr);
             //if the number contains a letter
             foreach (char c in inputStr)
@@ -45,6 +45,10 @@ public class textPinManager : MonoBehaviour
                 {
                     headertext.text = letterStr;
                     isLetter = true;
+                }
+                else
+                {
+                    isLetter = false;
                 }
             }
 
