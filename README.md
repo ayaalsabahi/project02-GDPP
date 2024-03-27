@@ -29,7 +29,13 @@ Version 2:
 4. Added in interactable crates & semisolid platforms
 5. Tutorial level broke and needs to be reintegrated
 
+Version 3, final: 
+1. Complete tutorial, level one, level two, and level three (boss level)
+2. Added in a lot of assets, the whole scenery looks built now.
+3. Also added in post processing and messing around with light
+4. puzzles are also fully solvable, leading to a boss fight with hauned arms where you can either die or escape once you avoid all arms
+
 Credits and attributions 
-  Not applicable 
+  https://www.soundsnap.com/fire_poof_short_dry_sanken_03_wav
 
   
