@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitZoneController : MonoBehaviour
 {
-    public
+    public int playerCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +18,26 @@ public class ExitZoneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerCount > 1)
+        {
+            SceneManager.LoadScene("LevelThree");
+        }
         
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("endLvl");
-            SceneManager.LoadScene("LevelThree");
+            playerCount += 1;   
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            playerCount -= 1;
         }
     }
 }

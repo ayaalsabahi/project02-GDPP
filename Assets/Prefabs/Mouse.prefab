@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3569322352897174040}
   m_Layer: 8
   m_Name: Mouse
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   lastMoveDirection: {x: 0, y: 0}
   mouseMoveSpeed: 0
   mouseJumpStrength: 0
+  pauseMenu: {fileID: 0}
   bodyPossesed: {fileID: 0}
 --- !u!1 &7803598774920999464
 GameObject:
