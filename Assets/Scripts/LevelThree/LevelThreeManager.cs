@@ -27,7 +27,11 @@ public class LevelThreeManager : MonoBehaviour
     public Camera boyCamera;
     public Camera mousecamera;
     public Camera mainCamera;
-    public int enemyNum;
+
+    public int enemyNum = 2; //how many enemies are currently in the scene
+    public int enemiesAvoided = 0;
+    public int maxEnemies = 10;
+
     
     
     public bool isOver = false;
@@ -38,9 +42,10 @@ public class LevelThreeManager : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            if(enemyNum != 0)
+            if(enemiesAvoided < maxEnemies)
             {
                 generateObject();
+                enemyNum += 1;
                 timer = interval;
             }
             
@@ -73,6 +78,7 @@ public class LevelThreeManager : MonoBehaviour
 
     public void enemyDied()
     {
+        enemiesAvoided += 1;
         enemyNum -= 1;
         soundManager.Instance.enemyDissapearSound();
 
