@@ -223,6 +223,7 @@ MonoBehaviour:
   boy: {fileID: 0}
   top: {fileID: 4375269483723833794}
   feetPos: {x: 0, y: 0, z: 0}
+  mouseFeetPos: {x: 0, y: 0, z: 0}
   boxOn: 0
   yOffset: 0
   mouse: {fileID: 0}

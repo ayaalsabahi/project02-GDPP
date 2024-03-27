@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 11236acf38f9244858b328b172824392
+guid: 5b89fc537d8474a73909082fcbc8a135
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 952, y: 325, z: 1007, w: 1017}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork-9_0
+      name: Untitled_Artwork 11_0
       rect:
         serializedVersion: 2
-        x: 961
-        y: 335
-        width: 408
-        height: 296
+        x: 85
+        y: 60
+        width: 604
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18c5c9d4aac534bfcace779f9948b2d8
-      internalID: 1097773170
+      spriteID: 75545e8bad95248078e3f2dadde52253
+      internalID: -1159758097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled_Artwork 11_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 429
+        width: 601
+        height: 357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 649e4af29ef3340258f6900d1a7a91dd
+      internalID: -1291197049
       vertices: []
       indices: 
       edges: []
@@ -141,7 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Untitled_Artwork-9_0: 1097773170
+      Untitled_Artwork 11_0: -946845219
+      Untitled_Artwork 11_1: -1158358556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
