@@ -2453,7 +2453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3333020789794060994, guid: cfa57d05815ef4945ac5e2a4a85cca1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.87
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 3333020789794060994, guid: cfa57d05815ef4945ac5e2a4a85cca1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4017,6 +4017,8 @@ MonoBehaviour:
   mousecamera: {fileID: 1135813363}
   mainCamera: {fileID: 1263945105}
   enemyNum: 5
+  enemiesAvoided: 0
+  maxEnemies: 5
   isOver: 0
 --- !u!114 &1872516963
 MonoBehaviour:
