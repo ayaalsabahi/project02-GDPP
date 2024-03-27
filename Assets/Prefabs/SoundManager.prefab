@@ -51,6 +51,7 @@ MonoBehaviour:
   getKey: {fileID: 8300000, guid: 183b4e811231c449c8aefd2b1db92305, type: 3}
   slidingBox: {fileID: 8300000, guid: 722c3b7661d1f41fbbc57147dd0d637d, type: 3}
   unlockingDoor: {fileID: 8300000, guid: edc00749a87b54ebea00326140c83170, type: 3}
+  enemyPoof: {fileID: 8300000, guid: 541b939594fb64c24883b9f6d3130c5b, type: 3}
 --- !u!114 &4519920035488536995
 MonoBehaviour:
   m_ObjectHideFlags: 0

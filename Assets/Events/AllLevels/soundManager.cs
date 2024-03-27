@@ -14,6 +14,7 @@ public class soundManager : MonoBehaviour
     public AudioClip getKey;
     public AudioClip slidingBox;
     public AudioClip unlockingDoor;
+    public AudioClip enemyPoof;
 
     private AudioSource mouseSoundSource;
     private AudioSource backgroundMusicSource;
@@ -21,6 +22,7 @@ public class soundManager : MonoBehaviour
     private AudioSource getKeySource;
     private AudioSource slidingBoxSource;
     private AudioSource unlockingDoorSource;
+    private AudioSource enemyPoofSource;
 
 
     bool isBoy = true;
@@ -51,7 +53,7 @@ public class soundManager : MonoBehaviour
             getKeySource = gameObject.AddComponent<AudioSource>();
             slidingBoxSource = gameObject.AddComponent<AudioSource>();
             unlockingDoorSource = gameObject.AddComponent<AudioSource>();
-
+            enemyPoofSource = gameObject.AddComponent<AudioSource>();
             // Assign audio clips to AudioSource components
             mouseSoundSource.clip = mouseSound;
             backgroundMusicSource.clip = backgroundMusic;
@@ -59,6 +61,7 @@ public class soundManager : MonoBehaviour
             getKeySource.clip = getKey;
             slidingBoxSource.clip = slidingBox;
             unlockingDoorSource.clip = unlockingDoor;
+            enemyPoofSource.clip = enemyPoof;
 
             // Set loop for background music
             backgroundMusicSource.loop = true;
@@ -105,5 +108,10 @@ public class soundManager : MonoBehaviour
     public void doorSound()
     {
         unlockingDoorSource.Play();
+    }
+
+    public void enemyDissapearSound()
+    {
+        enemyPoofSource.Play();
     }
 }
