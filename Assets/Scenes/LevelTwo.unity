@@ -5121,7 +5121,7 @@ PrefabInstance:
       objectReference: {fileID: 694057925}
     - target: {fileID: 8746693540795140527, guid: 0aa9be04d03474071b84261e989f2216, type: 3}
       propertyPath: groundLayer.m_Bits
-      value: 1088
+      value: 9280
       objectReference: {fileID: 0}
     - target: {fileID: 8746693540795140527, guid: 0aa9be04d03474071b84261e989f2216, type: 3}
       propertyPath: interactableLayer.m_Bits
@@ -6642,7 +6642,7 @@ PrefabInstance:
       objectReference: {fileID: 694057925}
     - target: {fileID: 3569322352897174040, guid: 457fff30747fc489189efa9afacccef1, type: 3}
       propertyPath: groundLayer.m_Bits
-      value: 1344
+      value: 9536
       objectReference: {fileID: 0}
     - target: {fileID: 3569322352897174040, guid: 457fff30747fc489189efa9afacccef1, type: 3}
       propertyPath: interactableLayer.m_Bits
